@@ -1,4 +1,5 @@
 .pokemon_card {
+  position: relative;
   margin-block: 100px;
   padding: 20px;
   display: flex;
@@ -10,6 +11,7 @@
   min-height: 500px;
   border: 10px solid #fce042;
   box-shadow: 5px 9px 15px 2px rgba(0, 0, 0, 0.25);
+
   background: radial-gradient(
     50.11% 50.11% at 50% 34.57%,
     var(--type-color) 36.46%,
@@ -23,11 +25,24 @@
   }
 }
 
+.bgImg {
+  position: absolute;
+  object-fit: cover;
+  mix-blend-mode: luminosity;
+  opacity: 0.2;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 .card_top {
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .card_title {
@@ -50,6 +65,7 @@
 .pokemon_image {
   max-width: 250px;
   height: 250px;
+  z-index: 1;
 }
 
 .card_details {
@@ -63,6 +79,7 @@
   border-radius: 7px;
   padding: 8px;
   margin-top: -12px;
+  z-index: 1;
 }
 
 .card_details .stats {
@@ -84,6 +101,7 @@
   display: block;
   font-weight: 600;
   padding: 15px 20px;
+  z-index: 1;
 }
 
 /* Fire Type */

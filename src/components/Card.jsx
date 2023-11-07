@@ -5,6 +5,7 @@ export const Card = ({ pokemonData }) => {
   const [elementalType, setElementalType] = useState({
     class: styles.fire,
     img: "/img/type.png",
+    bgImg: "/img/fire-background.png",
   });
 
   useEffect(() => {
@@ -15,24 +16,38 @@ export const Card = ({ pokemonData }) => {
     if (pokemonElements !== undefined) {
       switch (pokemonData.types[0].type.name) {
         case "fire":
-          setElementalType({ class: styles.fire, img: "/img/fire.png" });
+          setElementalType({
+            class: styles.fire,
+            img: "/img/fire.png",
+            bgImg: "/img/fire-background.gif",
+          });
           break;
         case "water":
-          setElementalType({ class: styles.water, img: "/img/water.png" });
+          setElementalType({
+            class: styles.water,
+            img: "/img/water.png",
+            bgImg: "/img/water-background.gif",
+          });
           break;
         case "grass":
-          setElementalType({ class: styles.grass, img: "/img/grass.png" });
+          setElementalType({
+            class: styles.grass,
+            img: "/img/grass.png",
+            bgImg: "/img/grass-background.gif",
+          });
           break;
         case "electric":
           setElementalType({
             class: styles.electric,
             img: "/img/eletric.png",
+            bgImg: "/img/eletric-background.gif",
           });
           break;
         default:
           setElementalType({
             class: styles.colorless,
             img: "/img/colorless.png",
+            bgImg: "",
           });
           break;
       }
@@ -47,9 +62,10 @@ export const Card = ({ pokemonData }) => {
 
   return (
     <div className={`${styles.pokemon_card} ${elementalType.class}`}>
+      <img src={elementalType.bgImg} className={styles.bgImg} alt="" />
       <div className={styles.card_top}>
         <h1 className={styles.card_title}>
-          {pokemonData?.id} - {pokemonData.name}
+          {pokemonData?.id} - {readableName}
         </h1>
         <div className={styles.card_type}>
           <img src={elementalType.img} alt="" />

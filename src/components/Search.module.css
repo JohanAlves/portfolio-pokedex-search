@@ -49,6 +49,7 @@
   width: 100%;
   overflow: hidden;
   display: block;
+  z-index: 10;
 }
 
 .result {
