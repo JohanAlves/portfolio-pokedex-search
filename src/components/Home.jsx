@@ -10,6 +10,8 @@ const Home = ({ allPokemons }) => {
   const [pokemonData, setPokemonData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  //Carrega o Pokemon de acordo com a busca realizada no componente Search
+  //Realiza 2 chamadas: Uma puxa as infos do pokemon e a outra, o flavor text
   useEffect(() => {
     if (searchedPokemon != "") {
       setIsLoading(true);
@@ -27,6 +29,7 @@ const Home = ({ allPokemons }) => {
             .then((responseDescription) => {
               const entries = responseDescription.data.flavor_text_entries;
               const description =
+                //Caso não tenha o flavor text escolhido, retorna texto de não encontrado
                 entries.length >= 9
                   ? entries[9].flavor_text
                   : "No description was found for this pokemon.";
@@ -37,6 +40,7 @@ const Home = ({ allPokemons }) => {
               }));
             })
             .catch((error) => {
+              //Caso não tenha flavor text pra esse id, retorna texto de não encontrado
               const description = "No description was found for this pokemon.";
               setPokemonData((prev) => ({
                 ...prev,
@@ -52,6 +56,7 @@ const Home = ({ allPokemons }) => {
     }
   }, [searchedPokemon]);
 
+  //Caso esteja carregando, renderiza um Card em branco
   if (isLoading)
     return (
       <section className={styles.container}>
@@ -65,6 +70,7 @@ const Home = ({ allPokemons }) => {
       </section>
     );
 
+  //Caso nenhum pokemon tenha sido pesquisado ainda, mostra as instruções de como pesquisar
   if (pokemonData == "")
     return (
       <section className={styles.container}>
@@ -87,6 +93,7 @@ const Home = ({ allPokemons }) => {
       </section>
     );
 
+  //Mostra as informações do pokemon escolhido
   return (
     <section className={styles.container}>
       <Search
