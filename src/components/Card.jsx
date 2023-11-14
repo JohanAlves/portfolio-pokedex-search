@@ -4,8 +4,8 @@ import styles from "./Card.module.css";
 export const Card = ({ pokemonData }) => {
   const [elementalType, setElementalType] = useState({
     class: styles.fire,
-    img: "/img/type.png",
-    bgImg: "/img/fire-background.png",
+    img: "/img/fire.png",
+    bgImg: "/img/fire-background.gif",
   });
 
   // Verifica o elemento do pokemon e retorna algumas informações para
@@ -67,7 +67,10 @@ export const Card = ({ pokemonData }) => {
 
   return (
     <div className={`${styles.pokemon_card} ${elementalType.class}`}>
-      <img src={elementalType.bgImg} className={styles.bgImg} alt="" />
+      {console.log(elementalType.bgImg)}
+      {elementalType.bgImg !== undefined && (
+        <img src={elementalType.bgImg} className={styles.bgImg} alt="" />
+      )}
       <div className={styles.card_top}>
         <h1 className={styles.card_title}>
           {pokemonData?.id} - {readableName}
