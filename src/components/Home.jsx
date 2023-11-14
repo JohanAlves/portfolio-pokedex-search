@@ -10,8 +10,10 @@ const Home = ({ allPokemons }) => {
   const [pokemonData, setPokemonData] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  //Carrega o Pokemon de acordo com a busca realizada no componente Search
-  //Realiza 2 chamadas: Uma puxa as infos do pokemon e a outra, o flavor text
+  /**
+   * Loads Pokemon according to the search performed in the Search component
+   * Makes 2 calls: One pulls the pokemon information and the other, the flavor text
+   */
   useEffect(() => {
     if (searchedPokemon != "") {
       setIsLoading(true);
@@ -29,7 +31,7 @@ const Home = ({ allPokemons }) => {
             .then((responseDescription) => {
               const entries = responseDescription.data.flavor_text_entries;
               const description =
-                //Caso não tenha o flavor text escolhido, retorna texto de não encontrado
+                //If the flavor text doesn't exist, returns not found text
                 entries.length >= 9
                   ? entries[9].flavor_text
                   : "No description was found for this pokemon.";
@@ -40,7 +42,7 @@ const Home = ({ allPokemons }) => {
               }));
             })
             .catch((error) => {
-              //Caso não tenha flavor text pra esse id, retorna texto de não encontrado
+              //If the flavor text doesn't exist, returns not found text
               const description = "No description was found for this pokemon.";
               setPokemonData((prev) => ({
                 ...prev,
@@ -56,7 +58,7 @@ const Home = ({ allPokemons }) => {
     }
   }, [searchedPokemon]);
 
-  //Caso esteja carregando, renderiza um Card em branco
+  //If it's loading, renders a blank card
   if (isLoading)
     return (
       <section className={styles.container}>
@@ -70,7 +72,7 @@ const Home = ({ allPokemons }) => {
       </section>
     );
 
-  //Caso nenhum pokemon tenha sido pesquisado ainda, mostra as instruções de como pesquisar
+  //If no pokemon has been researched yet, it shows instructions on how to search
   if (pokemonData == "")
     return (
       <section className={styles.container}>
@@ -79,21 +81,18 @@ const Home = ({ allPokemons }) => {
           allPokemons={allPokemons}
         />
         <div className={styles.welcome}>
-          <h4>Seja bem vindo à Pokedex Remastered!</h4>
+          <h4>Welcome to Pokedex Remastered!</h4>
+          <p>To get started, search for a pokemon in the search bar above.</p>
           <p>
-            Para começar, pesquise por um pokemon na barra de pesquisa acima.
-          </p>
-          <p>
-            Para facilitar sua busca, esse aplicativo conta com um sistema de
-            complemento automático. Ou seja, quando aparecer o pokemon que você
-            está procurando, basta clicar no pokemon desejado, depois em Buscar
-            e pronto!
+            To make your search easier, this app has a search system with
+            autocomplete. So when the pokemon you want appears, just click on
+            its name, then click Search and its done!
           </p>
         </div>
       </section>
     );
 
-  //Mostra as informações do pokemon escolhido
+  //Shows information about the chosen pokemon
   return (
     <section className={styles.container}>
       <Search

@@ -8,8 +8,10 @@ export const Card = ({ pokemonData }) => {
     bgImg: "/img/fire-background.gif",
   });
 
-  // Verifica o elemento do pokemon e retorna algumas informações para
-  // adaptar ao elemento
+  /**
+   * Checks the pokemon element and returns some data to
+   * adapt to the element
+   */
   useEffect(() => {
     const elements = ["fire", "water", "grass", "electric"];
     const pokemonElements = pokemonData.types.find((type) =>
@@ -45,7 +47,8 @@ export const Card = ({ pokemonData }) => {
             bgImg: "/img/eletric-background.gif",
           });
           break;
-        //Caso não seja um dos elementos acima, retorna como Colorless
+
+        //If it is not one of the elements above, it returns as Colorless
         default:
           setElementalType({
             class: styles.colorless,
@@ -55,12 +58,12 @@ export const Card = ({ pokemonData }) => {
           break;
       }
     } else {
-      //Caso não tenha elemento, retorna como Colorless
+      //If it is not one of the elements above, it returns as Colorless
       setElementalType({ class: styles.colorless, img: "/img/colorless.png" });
     }
   }, [pokemonData]);
 
-  //Transforma o slug do pokemon em nome e junta com o ID para facilitar a busca
+  //Transforms the pokemon's slug into a name and combines it with the ID to make the search easier
   const capitalizedName =
     pokemonData?.name.charAt(0).toUpperCase() + pokemonData?.name.slice(1);
   const readableName = capitalizedName.split("-").join(" ");

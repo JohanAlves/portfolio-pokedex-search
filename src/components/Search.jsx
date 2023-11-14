@@ -8,7 +8,10 @@ const Search = ({ allPokemons, setSearchedPokemon }) => {
   const [selectedResult, setSelectedResult] = useState(-1);
   const [error, setError] = useState("");
 
-  //Quando o usuário digita algo, faz uma comparação case non-sensitive com todos os pokemons obtidos anteriormente e retorna apenas os que possuem alguma relação com o texto digitado na barra de busca
+  /**
+   * When the user types something, it makes a case non-sensitive comparison with all previously obtained pokemons and returns only those that have some
+   * relationship with the text entered in the search bar
+   */
   function handleSearchResults(value) {
     if (value.trim()) {
       const filteredPokemons = allPokemons.filter(
@@ -23,17 +26,17 @@ const Search = ({ allPokemons, setSearchedPokemon }) => {
     handleShowResults(value);
   }
 
-  //Controla mostrar ou esconder a parte de resultados
+  //Controls show/hide the results section
   function handleShowResults(value) {
     value == "" ? setShowResults(false) : setShowResults(true);
   }
 
-  //Coloca o valor do resultado escolhido no campo de busca
+  //Set the value of the chosen result in the search field
   function handleSearchResultsClick(e) {
     setInput(e.target.innerText);
   }
 
-  //Adiciona acessibilidade à área de resultados, para que o usuário possa usar o teclado para controlar
+  //Adds accessibility to the results section so the user can use the keyboard to control
   function handleSearchResultsKeyDown(e) {
     if (showResults) {
       const maxIndex = results.length - 1;
@@ -54,17 +57,17 @@ const Search = ({ allPokemons, setSearchedPokemon }) => {
     }
   }
 
-  //Salva o index do resultado que o usuário está com o mouse encima
+  //Saves the index of the result that the user on mouse hover
   function handleResultHover(index) {
     setSelectedResult(index);
   }
 
-  //Coloca o resultado como -1, caso o usuário tire o mouse da área de resultados
+  //Sets the result to -1 if the user leaves the results section
   function handleResultLeave() {
     setSelectedResult(-1);
   }
 
-  //Verifica se o texto usado para busca está na lista de pokemons. Caso não esteja, aparece um erro
+  //Checks if the text used for searching is in the pokemon list. If not, an error appears
   function validateChoosePokemon(input) {
     const chosenObj = allPokemons.find((pokemon) => pokemon.label === input);
     if (chosenObj !== undefined) {

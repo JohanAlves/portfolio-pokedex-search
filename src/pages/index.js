@@ -20,12 +20,12 @@ export default function App({ allPokemons }) {
 }
 
 export async function getServerSideProps() {
-  //Puxa todos os pokemons da API usando SSR para usar no Search
+  //Pulls all pokemons from the API using SSR to use in Search
   const response = await fetch("https://pokeapi.co/api/v2/pokemon/?limit=1292");
   const allPokemonsRaw = await response.json();
   const allPokemons = [];
 
-  //Transforma o slug do pokemon em nome e junta com o ID para facilitar a busca
+  //Transforms the pokemon's slug into a name and combines it with the ID to make the search easier
   allPokemonsRaw.results.map((pok) => {
     const splitUrl = pok.url.split("/");
     const id = splitUrl[splitUrl.length - 2];
