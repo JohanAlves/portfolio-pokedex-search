@@ -74,7 +74,7 @@ const Search = ({ allPokemons, setSearchedPokemon }) => {
       setSearchedPokemon(chosenObj);
       setError("");
       setInput("");
-    } else setError("Escolha uma opção válida!");
+    } else setError("Choose a valid option!");
   }
 
   return (
@@ -82,14 +82,14 @@ const Search = ({ allPokemons, setSearchedPokemon }) => {
       <div className={styles.search_bar}>
         <input
           type="text"
-          placeholder="ID ou Nome"
+          placeholder="ID or Name"
           value={input}
           onChange={(e) => handleSearchResults(e.target.value)}
           onFocus={() => handleSearchResults(input)}
           onBlur={() => setShowResults(false)}
           onKeyDown={(e) => handleSearchResultsKeyDown(e)}
         />
-        <button onClick={() => validateChoosePokemon(input)}>Buscar</button>
+        <button onClick={() => validateChoosePokemon(input)}>Search</button>
 
         {showResults && results.length && (
           <ul className={styles.results}>
